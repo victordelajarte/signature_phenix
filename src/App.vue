@@ -48,10 +48,14 @@
       </div>
       <div class="right">
         <div id="result">
+          <link
+            href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap"
+            rel="stylesheet"
+          >
           <div style="display:inline-block; float:left">
             <a href="https://www.wearephenix.com" target="_blank" style="text-decoration:none;">
               <img
-                :src="`${publicPath}assets/phenix.png`"
+                :src="`${publicPath}assets/phenix_ecrit.png`"
                 style="display:block; margin-right:17px;width:75px;margin-top:25px"
                 alt="logo phenix"
               >
@@ -61,31 +65,31 @@
             style="text-align:left; display:inline-block; border-left:3px solid #009CDF; padding-left:7px;"
           >
             <p
-              style="font-size:14px; color:#009CDF; font-family: 'Oxygen',sans-serif; font-weight:700; margin-top: 2px; margin-bottom:5px; text-transform:capitalize"
+              style="font-size:14px; color:#009CDF; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-weight:700; margin-top: 2px; margin-bottom:5px; text-transform:capitalize"
             >
               {{firstName}}
               <span
-                style="font-size:14px; color:#009CDF; font-family: 'Oxygen',sans-serif; font-weight:700; margin-top: 2px; text-transform: uppercase; margin-bottom:5px;"
+                style="font-size:14px; color:#009CDF; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-weight:700; margin-top: 2px; text-transform: uppercase; margin-bottom:5px;"
               >{{lastName}}</span>
               <span
-                style="font-size:14px; color:#333333; font-family: 'Oxygen',sans-serif; font-weight:400;text-transform:none"
+                style="font-size:14px; color:#333333; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-weight:400;text-transform:none"
               >&nbsp;-&nbsp;{{fonction}}</span>
             </p>
             <p
-              style="font-size:11px; color:#aaaaaa; margin-top: 2px; margin-bottom:2px; text-decoration:none;"
+              style="font-size:11px; color:#aaaaaa; font-family: 'Montserrat', Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:2px; text-decoration:none;"
             >{{adresseEtablissement}}</p>
             <p
-              style="font-size:11px; color:#aaaaaa; margin-top: 2px; margin-bottom:2px; text-decoration:none;"
+              style="font-size:11px; color:#aaaaaa; font-family: 'Montserrat', Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:2px; text-decoration:none;"
             >{{adresseSupplementaire}}</p>
             <p style="margin-top: 2px; margin-bottom:5px;">
               <a
                 href="http://www.wearephenix.com"
-                style="text-decoration:none; font-size:11px; color:#aaaaaa; "
+                style="text-decoration:none; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size:11px; color:#aaaaaa; "
                 target="_blank"
               >www.wearephenix.com</a>
             </p>
             <p
-              style="font-size:11px; color:#aaaaaa; margin-top: 2px; margin-bottom:5px; text-decoration:none;text-transform:lowercase"
+              style="font-size:11px; color:#aaaaaa; font-family: 'Montserrat', Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:5px; text-decoration:none;text-transform:lowercase"
             >
               <img
                 :src="`${publicPath}assets/email_bleu.png`"
@@ -94,7 +98,9 @@
               >
               {{prefixeMail}}@wearephenix.com
             </p>
-            <p style="font-size:11px; color:#aaaaaa; margin-top: 2px; margin-bottom:5px;">
+            <p
+              style="font-size:11px; color:#aaaaaa; font-family: 'Montserrat', Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:5px;"
+            >
               <img :src="`${publicPath}assets/tel_bleu.png`" alt="tel" style="vertical-align: sub;">
               +33(0){{numeroTelephoneFormatted}}
             </p>
@@ -256,7 +262,7 @@ export default {
   border: 1px solid #009cdf;
   padding: 50px 0;
   border-radius: 5px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
 }
 
 .left,
