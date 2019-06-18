@@ -52,18 +52,14 @@
             href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap"
             rel="stylesheet"
           >
-          <div style="display:inline-block; float:left">
-            <a href="https://www.wearephenix.com" target="_blank" style="text-decoration:none;">
-              <img
-                :src="`${publicPath}assets/phenix_ecrit.png`"
-                style="display:block; margin-right:17px;width:75px;margin-top:25px"
-                alt="logo phenix"
-              >
-            </a>
-          </div>
-          <div
-            style="text-align:left; display:inline-block; border-left:3px solid #009CDF; padding-left:7px;"
-          >
+          <a href="https://www.wearephenix.com" target="_blank" style="text-decoration:none;">
+            <img
+              :src="`${publicPath}assets/V2/Signature-phenix.png`"
+              style="display:block"
+              alt="logo phenix"
+            >
+          </a>
+          <div>
             <p
               style="font-size:14px; color:#009CDF; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-weight:700; margin-top: 2px; margin-bottom:5px; text-transform:capitalize"
             >
@@ -72,36 +68,27 @@
                 style="font-size:14px; color:#009CDF; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-weight:700; margin-top: 2px; text-transform: uppercase; margin-bottom:5px;"
               >{{lastName}}</span>
               <span
-                style="font-size:14px; color:#333333; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-weight:400;text-transform:none"
+                style="font-size:14px; color:#009CDF; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-weight:400;text-transform:none"
               >&nbsp;-&nbsp;{{fonction}}</span>
             </p>
             <p
-              style="font-size:11px; color:#aaaaaa; font-family: 'Montserrat', Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:2px; text-decoration:none;"
-            >{{adresseEtablissement}}</p>
-            <p
-              style="font-size:11px; color:#aaaaaa; font-family: 'Montserrat', Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:2px; text-decoration:none;"
-            >{{adresseSupplementaire}}</p>
+              style="font-size:11px; color:#aaaaaa; font-family: 'Montserrat', Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:2px"
+            >{{adresseEtablissement}} - {{adresseSupplementaire}}</p>
             <p style="margin-top: 2px; margin-bottom:5px;">
               <a
                 href="http://www.wearephenix.com"
-                style="text-decoration:none; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size:11px; color:#aaaaaa; "
+                style=" font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size:11px; color:#aaaaaa; "
                 target="_blank"
               >www.wearephenix.com</a>
             </p>
+            <img :src="`${publicPath}assets/V2/mail.png`" alt="mail" style="vertical-align: sub;">
             <p
-              style="font-size:11px; color:#aaaaaa; font-family: 'Montserrat', Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:5px; text-decoration:none;text-transform:lowercase"
-            >
-              <img
-                :src="`${publicPath}assets/email_bleu.png`"
-                alt="mail"
-                style="vertical-align: sub;"
-              >
-              {{prefixeMail}}@wearephenix.com
-            </p>
+              style="font-size:11px; display:inline-block; color:#aaaaaa; font-family: 'Montserrat', Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:5px; text-decoration:underline;text-transform:lowercase"
+            >{{prefixeMail}}@wearephenix.com</p>
             <p
               style="font-size:11px; color:#aaaaaa; font-family: 'Montserrat', Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:5px;"
             >
-              <img :src="`${publicPath}assets/tel_bleu.png`" alt="tel" style="vertical-align: sub;">
+              <img :src="`${publicPath}assets/V2/phone.png`" alt="tel" style="vertical-align: sub;">
               +33(0){{numeroTelephoneFormatted}}
             </p>
             <p style="margin-bottom:5px;">
@@ -149,13 +136,13 @@ export default {
   data() {
     return {
       publicPath: process.env.BASE_URL,
-      firstName: "",
-      lastName: "",
-      fonction: "",
-      adresseEtablissement: "",
-      adresseSupplementaire: "",
-      prefixeMail: "",
-      numeroTelephone: ""
+      firstName: "Marion",
+      lastName: "Pennarguear",
+      fonction: "Responsable marketing",
+      adresseEtablissement: "6 avenue Marcellin Berthelot, Bât le Newton",
+      adresseSupplementaire: "44800 St Herblain",
+      prefixeMail: "marion",
+      numeroTelephone: "706066236"
     };
   },
   computed: {
