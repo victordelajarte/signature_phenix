@@ -73,7 +73,10 @@
             </p>
             <p
               style="font-size:11px; color:#aaaaaa; font-family: 'Montserrat', Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:2px"
-            >{{adresseEtablissement}} - {{adresseSupplementaire}}</p>
+            >{{adresseEtablissement}}</p>
+            <p
+              style="font-size:11px; color:#aaaaaa; font-family: 'Montserrat', Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:2px"
+            >{{adresseSupplementaire}}</p>
             <p style="margin-top: 2px; margin-bottom:5px;">
               <a
                 href="http://www.wearephenix.com"
@@ -82,9 +85,10 @@
               >www.wearephenix.com</a>
             </p>
             <img :src="`${publicPath}assets/V2/mail.png`" alt="mail" style="vertical-align: sub;">
-            <p
+            <a
+              :href="'mailto:' + completeEmail"
               style="font-size:11px; display:inline-block; color:#aaaaaa; font-family: 'Montserrat', Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:5px; text-decoration:underline;text-transform:lowercase"
-            >{{prefixeMail}}@wearephenix.com</p>
+            >{{completeEmail}}</a>
             <p
               style="font-size:11px; color:#aaaaaa; font-family: 'Montserrat', Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:5px;"
             >
@@ -178,6 +182,9 @@ export default {
       } else {
         return this.numeroTelephone;
       }
+    },
+    completeEmail: function() {
+      return this.prefixeMail + "@wearephenix.com";
     }
   },
   methods: {
@@ -237,12 +244,12 @@ export default {
 #app {
   display: flex;
   justify-content: center;
-  padding: 15vh 0;
+  padding: 10vh 0;
   height: 100vh;
   width: 100vw;
 }
 .content {
-  width: 80vw;
+  width: 90vw;
   display: flex;
   position: relative;
   font-size: 13px;
@@ -252,20 +259,25 @@ export default {
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
 }
 
+@media screen and (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+}
+
 .left,
 .right {
-  margin: 0 5%;
+  margin: 2em;
+  flex: 1;
 }
 
 .left {
-  /* font-family: Circular; */
-  width: 40%;
+  /* background: red; */
 }
 
 .right {
   display: flex;
   flex-direction: column;
-  margin: 2em auto;
 }
 
 label {
@@ -296,7 +308,6 @@ input {
   border: none;
   padding: 10px;
   color: #fff;
-  margin-right: -26px;
   margin-top: 12px;
   cursor: pointer;
 }
