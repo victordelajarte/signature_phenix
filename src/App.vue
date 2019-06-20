@@ -48,54 +48,59 @@
       </div>
       <div class="right">
         <div id="result">
-          <link
-            href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap"
-            rel="stylesheet"
-          >
           <a href="https://www.wearephenix.com" target="_blank" style="text-decoration:none;">
             <img
               :src="`${publicPath}assets/V2/Signature-phenix.png`"
-              style="display:block"
+              style="display:block; margin-bottom: 10px"
               alt="logo phenix"
             >
           </a>
           <div>
             <p
-              style="font-size:14px; color:#009CDF; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-weight:700; margin-top: 2px; margin-bottom:5px; text-transform:capitalize"
+              style="font-size:14px; line-height: 1.2; color: #289CDB; letter-spacing: 0.4px; font-family: Trebuchet, Arial, Helvetica, sans-serif; font-weight:700; margin-top: 2px; margin-bottom:5px; text-transform:capitalize"
             >
               {{firstName}}
               <span
-                style="font-size:14px; color:#009CDF; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-weight:700; margin-top: 2px; text-transform: uppercase; margin-bottom:5px;"
+                style="font-size:14px; line-height: 1.2; color:#289CDB; letter-spacing: 0.4px; font-family: Trebuchet, Arial, Helvetica, sans-serif; font-weight:700; margin-top: 2px; text-transform: uppercase; margin-bottom:5px;"
               >{{lastName}}</span>
               <span
-                style="font-size:14px; color:#009CDF; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-weight:400;text-transform:none"
+                style="font-size:14px; line-height: 1.2; color:#289CDB; letter-spacing: 0.4px; font-family: Trebuchet, Arial, Helvetica, sans-serif; font-weight:400;text-transform:none"
               >&nbsp;-&nbsp;{{fonction}}</span>
             </p>
             <p
-              style="font-size:11px; color:#aaaaaa; font-family: 'Montserrat', Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:2px"
+              style="font-size:11px; line-height: 1.2; color:#aaaaaa; letter-spacing: 0.4px; font-family: Trebuchet, Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:2px"
             >{{adresseEtablissement}}</p>
             <p
-              style="font-size:11px; color:#aaaaaa; font-family: 'Montserrat', Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:2px"
+              style="font-size:11px; line-height: 1.2; color:#aaaaaa; letter-spacing: 0.4px; font-family: Trebuchet, Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:2px"
             >{{adresseSupplementaire}}</p>
-            <p style="margin-top: 2px; margin-bottom:5px;">
-              <a
-                href="http://www.wearephenix.com"
-                style=" font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size:11px; color:#aaaaaa; "
-                target="_blank"
-              >www.wearephenix.com</a>
-            </p>
-            <img :src="`${publicPath}assets/V2/mail.png`" alt="mail" style="vertical-align: sub;">
+            <a
+              href="http://www.wearephenix.com"
+              style="line-height: 1.2; font-family: Trebuchet, Arial, Helvetica, sans-serif; font-size:11px; color:#aaaaaa;display:block;margin-top: 2px; margin-bottom: 5px;"
+              target="_blank"
+            >www.wearephenix.com</a>
+            <img
+              :src="`${publicPath}assets/V2/mail.png`"
+              alt="mail"
+              style="vertical-align: sub; margin-right: 15px; display: inline-block; margin-top: 5px"
+              width="20"
+              height="20"
+            >
             <a
               :href="'mailto:' + completeEmail"
-              style="font-size:11px; display:inline-block; color:#aaaaaa; font-family: 'Montserrat', Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:5px; text-decoration:underline;text-transform:lowercase"
+              style="font-size:11px; line-height: 1.2; display:inline-block; color:#aaaaaa; letter-spacing: 0.4px; font-family: Trebuchet, Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:5px; text-decoration:underline;text-transform:lowercase;vertical-align: bottom;"
             >{{completeEmail}}</a>
-            <p
-              style="font-size:11px; color:#aaaaaa; font-family: 'Montserrat', Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:5px;"
+            <br>
+            <img
+              :src="`${publicPath}assets/V2/phone.png`"
+              alt="tel"
+              style="vertical-align: sub; margin-right: 15px; display: inline-block; margin-top: 5px"
+              width="20"
+              height="20"
             >
-              <img :src="`${publicPath}assets/V2/phone.png`" alt="tel" style="vertical-align: sub;">
-              +33(0){{numeroTelephoneFormatted}}
-            </p>
-            <p style="margin-bottom:5px;">
+            <span
+              style="font-size:11px; line-height: 1.2; color:#aaaaaa; letter-spacing: 0.4px; font-family: Trebuchet, Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:5px; display: inline-block; vertical-align: bottom"
+            >+33(0){{numeroTelephoneFormatted}}</span>
+            <p style="margin-top: 8px; margin-left: -3px; line-height: 1.2;">
               <a
                 href="https://www.facebook.com/wearephenix"
                 target="_blank"
@@ -140,13 +145,13 @@ export default {
   data() {
     return {
       publicPath: process.env.BASE_URL,
-      firstName: "Marion",
-      lastName: "Pennarguear",
-      fonction: "Responsable marketing",
-      adresseEtablissement: "6 avenue Marcellin Berthelot, Bât le Newton",
-      adresseSupplementaire: "44800 St Herblain",
-      prefixeMail: "marion",
-      numeroTelephone: "706066236"
+      firstName: "Victor",
+      lastName: "de Lajarte",
+      fonction: "Développeur web",
+      adresseEtablissement: "43-45 Avenue de Clichy - 75017 Paris",
+      adresseSupplementaire: "",
+      prefixeMail: "victor",
+      numeroTelephone: "604035547"
     };
   },
   computed: {
@@ -231,11 +236,6 @@ export default {
 </script>
 
 <style>
-/* @font-face {
-  font-family: Circular;
-  src: url("../public/assets/CircularStd-Medium.otf") format("opentype");
-} */
-
 * {
   margin: 0;
   padding: 0;
@@ -256,7 +256,7 @@ export default {
   border: 1px solid #009cdf;
   padding: 50px 0;
   border-radius: 5px;
-  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-family: Trebuchet, Arial, Helvetica, sans-serif;
 }
 
 @media screen and (max-width: 768px) {
@@ -304,7 +304,7 @@ input {
 }
 
 .bouton {
-  background-color: #009cdf;
+  background-color: #289cdb;
   border: none;
   padding: 10px;
   color: #fff;
