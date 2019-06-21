@@ -50,7 +50,7 @@
         <div id="result">
           <a href="https://www.wearephenix.com" target="_blank" style="text-decoration:none;">
             <img
-              :src="`${publicPath}assets/V2/Signature-phenix.png`"
+              :src="`${publicPath}assets/V2/logo.png`"
               style="display:block; margin-bottom: 10px"
               alt="logo phenix"
             >
@@ -59,12 +59,9 @@
             <p
               style="font-size:14px; line-height: 1.2; color: #289CDB; letter-spacing: 0.4px; font-family: Trebuchet, Arial, Helvetica, sans-serif; font-weight:700; margin-top: 2px; margin-bottom:5px; text-transform:capitalize"
             >
-              {{firstName}}
+              {{nameFormatted}}
               <span
-                style="font-size:14px; line-height: 1.2; color:#289CDB; letter-spacing: 0.4px; font-family: Trebuchet, Arial, Helvetica, sans-serif; font-weight:700; margin-top: 2px; text-transform: uppercase; margin-bottom:5px;"
-              >{{lastName}}</span>
-              <span
-                style="font-size:14px; line-height: 1.2; color:#289CDB; letter-spacing: 0.4px; font-family: Trebuchet, Arial, Helvetica, sans-serif; font-weight:400;text-transform:none"
+                style="font-size:14px; line-height: 1.2; color:#289CDB; font-family: Trebuchet, Arial, Helvetica, sans-serif; font-weight:400;text-transform:none"
               >&nbsp;-&nbsp;{{fonction}}</span>
             </p>
             <p
@@ -82,20 +79,17 @@
               :src="`${publicPath}assets/V2/mail.png`"
               alt="mail"
               style="vertical-align: sub; margin-right: 15px; display: inline-block; margin-top: 5px"
-              width="20"
-              height="20"
+              width="18"
+              height="18"
             >
-            <a
-              :href="'mailto:' + completeEmail"
+            <span
               style="font-size:11px; line-height: 1.2; display:inline-block; color:#aaaaaa; letter-spacing: 0.4px; font-family: Trebuchet, Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:5px; text-decoration:underline;text-transform:lowercase;vertical-align: bottom;"
-            >{{completeEmail}}</a>
+            >{{completeEmail}}</span>
             <br>
             <img
               :src="`${publicPath}assets/V2/phone.png`"
               alt="tel"
               style="vertical-align: sub; margin-right: 15px; display: inline-block; margin-top: 5px"
-              width="20"
-              height="20"
             >
             <span
               style="font-size:11px; line-height: 1.2; color:#aaaaaa; letter-spacing: 0.4px; font-family: Trebuchet, Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:5px; display: inline-block; vertical-align: bottom"
@@ -145,13 +139,13 @@ export default {
   data() {
     return {
       publicPath: process.env.BASE_URL,
-      firstName: "Victor",
-      lastName: "de Lajarte",
-      fonction: "Développeur web",
-      adresseEtablissement: "43-45 Avenue de Clichy - 75017 Paris",
+      firstName: "",
+      lastName: "",
+      fonction: "",
+      adresseEtablissement: "",
       adresseSupplementaire: "",
-      prefixeMail: "victor",
-      numeroTelephone: "604035547"
+      prefixeMail: "",
+      numeroTelephone: ""
     };
   },
   computed: {
@@ -187,6 +181,9 @@ export default {
       } else {
         return this.numeroTelephone;
       }
+    },
+    nameFormatted: function() {
+      return this.firstName.toLowerCase() + " " + this.lastName.toLowerCase();
     },
     completeEmail: function() {
       return this.prefixeMail + "@wearephenix.com";
