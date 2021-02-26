@@ -51,7 +51,7 @@
           <a href="https://www.wearephenix.com" target="_blank" style="text-decoration:none;">
             <img
               :src="`${publicPath}assets/V2/logo.png`"
-              style="display:block; margin-bottom: 10px"
+              style="margin-bottom: 10px"
               alt="logo phenix"
             >
           </a>
