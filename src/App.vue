@@ -4,35 +4,41 @@
       <div class="left">
         <h1
           style="text-align:center"
-        >Création de signatures automatiques pour la messagerie Gmail.com</h1>
-        <br>
+        >Phenix email signature generator</h1>
+        <div class="flags">
+          <button class="countryButton" v-on:click="updateLocale('fr_fr')"><span class="emoji">🇫🇷</span></button>
+          <button class="countryButton" v-on:click="updateLocale('es_es')"><span class="emoji">🇪🇸</span></button>
+          <button class="countryButton" v-on:click="updateLocale('pt_pt')"><span class="emoji">🇵🇹</span></button>
+          <button class="countryButton" v-on:click="updateLocale('en_gb')"><span class="emoji">🇬🇧</span></button>
+        </div>
+
         <label>
-          Votre prénom :
+          {{locale.text.firstName}} :
           <input type="text" v-model="firstName" required @blur="remplirMail">
         </label>
         <label>
-          Votre nom :
+          {{locale.text.lastName}} :
           <input type="text" v-model="lastName" required>
         </label>
         <label>
-          Votre fonction :
-          <input type="text" v-model="fonction" required>
+          {{locale.text.job}} :
+          <input type="text" v-model="job" required>
         </label>
         <label>
-          Adresse du bureau :
-          <input type="text" v-model="adresseEtablissement" required>
+          {{locale.text.officeAddress}} :
+          <input type="text" v-model="officeAddr" required>
         </label>
         <label>
-          Adresse supplémentaire* :
-          <input type="text" v-model="adresseSupplementaire">
+          {{locale.text.additionnalOfficeAddress}}* :
+          <input type="text" v-model="additionnalAddr">
         </label>
         <label>
-          Préfixe de votre adresse mail :
+          {{locale.text.emailPrefix}} :
           <input type="text" v-model="prefixeMail" required>
         </label>
         <span class="email">@wearephenix.com</span>
         <label>
-          Votre numéro de téléphone : +33(0)
+          {{locale.text.phoneNumber}} : {{locale.phonePrefix}}
           <input
             type="text"
             v-model="numeroTelephone"
@@ -44,11 +50,11 @@
         </label>
         <p
           style="font-size:12px"
-        >* Pour les personnes qui disposent de deux adresses postales différentes</p>
+        >* {{locale.text.footNote1}}</p>
       </div>
       <div class="right">
         <div id="result">
-          <a href="https://www.wearephenix.com" target="_blank" style="text-decoration:none;">
+          <a :href="locale.websiteUrl" target="_blank" style="text-decoration:none;">
             <img
               :src="`${publicPath}assets/V2/logo.png`"
               style="display:block; margin-bottom: 10px"
@@ -62,19 +68,19 @@
               {{nameFormatted}}
               <span
                 style="font-size:14px; line-height: 1.2; color:#289CDB; font-family: Trebuchet, Arial, Helvetica, sans-serif; font-weight:400;text-transform:none"
-              >&nbsp;-&nbsp;{{fonction}}</span>
+              >&nbsp;-&nbsp;{{job}}</span>
             </p>
             <p
               style="font-size:11px; line-height: 1.2; color:#aaaaaa; letter-spacing: 0.4px; font-family: Trebuchet, Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:2px"
-            >{{adresseEtablissement}}</p>
+            >{{officeAddr}}</p>
             <p
               style="font-size:11px; line-height: 1.2; color:#aaaaaa; letter-spacing: 0.4px; font-family: Trebuchet, Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:2px"
-            >{{adresseSupplementaire}}</p>
+            >{{additionnalAddr}}</p>
             <a
-              href="http://www.wearephenix.com"
+              :href="locale.websiteUrl"
               style="line-height: 1.2; font-family: Trebuchet, Arial, Helvetica, sans-serif; font-size:11px; color:#aaaaaa;display:block;margin-top: 2px; margin-bottom: 5px;"
               target="_blank"
-            >www.wearephenix.com</a>
+            >{{locale.websiteUrl}}</a>
             <img
               :src="`${publicPath}assets/V2/mail.png`"
               alt="mail"
@@ -82,9 +88,11 @@
               width="18"
               height="18"
             >
-            <span
+            <a
+              :href="`mailto:${completeEmail}`"
               style="font-size:11px; line-height: 1.2; display:inline-block; color:#aaaaaa; letter-spacing: 0.4px; font-family: Trebuchet, Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:5px; text-decoration:underline;text-transform:lowercase;vertical-align: bottom;"
-            >{{completeEmail}}</span>
+              target="_blank"
+            >{{completeEmail}}</a>
             <br>
             <img
               :src="`${publicPath}assets/V2/phone.png`"
@@ -93,10 +101,11 @@
             >
             <span
               style="font-size:11px; line-height: 1.2; color:#aaaaaa; letter-spacing: 0.4px; font-family: Trebuchet, Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:5px; display: inline-block; vertical-align: bottom"
-            >+33(0){{numeroTelephoneFormatted}}</span>
+            >{{locale.phonePrefix}}{{numeroTelephoneFormatted}}</span>
             <p style="margin-top: 8px; margin-left: -3px; line-height: 1.2;">
               <a
-                href="https://www.facebook.com/wearephenix"
+                v-if="locale.hasOwnProperty('facebookLink')"
+                :href="locale.facebookLink"
                 target="_blank"
                 style="text-decoration:none;"
               >
@@ -106,7 +115,7 @@
                   alt="fb"
                 >
               </a>
-              <a href="https://twitter.com/phenixfr" target="_blank" style="text-decoration:none;">
+              <a v-if="locale.hasOwnProperty('twitterLink')" :href="locale.twitterLink" target="_blank" style="text-decoration:none;">
                 <img
                   :src="`${publicPath}assets/icon-twitter-30.png`"
                   style="padding-right:5px; border:none;"
@@ -114,26 +123,40 @@
                 >
               </a>
               <a
-                href="https://instagram.com/phenix_antigaspi"
+                v-if="locale.hasOwnProperty('instagramLink')"
+                :href="locale.instagramLink"
                 target="_blank"
                 style="text-decoration:none;"
               >
                 <img
                   :src="`${publicPath}assets/icon-insta-30.png`"
                   style="padding-right:5px; border:none;"
-                  alt="tw"
+                  alt="ig"
+                >
+              </a>
+              <a
+                v-if="locale.hasOwnProperty('linkedinLink')"
+                :href="locale.linkedinLink"
+                target="_blank"
+                style="text-decoration:none;"
+              >
+                <img
+                  :src="`${publicPath}assets/icon-linkedin-30.png`"
+                  style="padding-right:5px; border:none;"
+                  alt="linkedin"
                 >
               </a>
             </p>
           </div>
         </div>
-        <button class="bouton" @click="copySignature" :disabled="!canCopy">Copier la signature</button>
+        <button class="bouton" @click="copySignature" :disabled="!canCopy">{{locale.text.copySignature}}</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {locales} from './locales.js'
 export default {
   name: "app",
   data() {
@@ -141,11 +164,12 @@ export default {
       publicPath: process.env.BASE_URL,
       firstName: "",
       lastName: "",
-      fonction: "",
-      adresseEtablissement: "",
-      adresseSupplementaire: "",
+      job: "",
+      officeAddr: "",
+      additionnalAddr: "",
       prefixeMail: "",
-      numeroTelephone: ""
+      numeroTelephone: "",
+      locale: locales['fr_fr']
     };
   },
   computed: {
@@ -161,8 +185,8 @@ export default {
       return (
         this.firstName.trim().length > 0 &&
         this.lastName.trim().length > 0 &&
-        this.fonction.trim().length > 0 &&
-        this.adresseEtablissement.trim().length > 0 &&
+        this.job.trim().length > 0 &&
+        this.officeAddr.trim().length > 0 &&
         this.prefixeMail.trim().length > 0 &&
         this.isNumeroTelValide
       );
@@ -190,6 +214,9 @@ export default {
     }
   },
   methods: {
+    updateLocale: function(code) {
+      this.locale = locales[code]
+    },
     checkIfNumber: function(e) {
       // console.log(e);
       // console.log(e.key);
@@ -307,6 +334,26 @@ input {
   color: #fff;
   margin-top: 12px;
   cursor: pointer;
+}
+
+.countryButton {
+  background-color: #289cdb00;
+  border: none;
+  padding: 10px;
+  margin: 12px;
+  cursor: pointer;
+}
+
+.flags {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+span.emoji {
+  font-size: 40px;
+  vertical-align: middle;
+  line-height: 2;
 }
 
 .bouton:disabled {
