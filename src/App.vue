@@ -99,14 +99,16 @@
             >{{completeEmail}}</a>
             <br>
             <!-- src/img/phone.png -->
-            <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAQAAAD8x0bcAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADdcAAA3XAUIom3gAAAAHdElNRQfjBhUJBDNg7g4cAAABMUlEQVQoz3XQuy+dARzG8c/7up4OJoO4xGJplIQTBgMhIXIag5yGpLGIiI3VX2AVllYiJlPTNyaJdpAwGE4oItJVFDGdhsH9NrjE5fWbnuGb/L7PE0S0S7uWNS5L2tsLdWo2ZsSmAXlEsVC3Kbuu/HShVeyFju3f3uffku9BBfKD+1zh5D3oRimo1hYrhNC6JpC0ao/bWOiXasVYVyNBEAsdWtONLTv6iBshiEgYNS+j0LAdP14jaSFOzUorc+abKj2voUhOL2Rd6rHhyIZ2H/11pVy/Nh/sugmeHLrUm/Rfga8qbWmw6J8OeWaCZ6pdGn23j0/q/LENvqgNHv+CFimRzAulXBPhYwOwZNpng4ofqkOp3OB5C5CQkrRtxYELZYYsvxj4acYSHerkOFdkzsIdFQdOIlSssuMAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTktMDYtMjFUMDk6MDQ6NTErMDA6MDBTc7gIAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE5LTA2LTIxVDA5OjA0OjUxKzAwOjAwIi4AtAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII="
-              alt="tel"
-              style="vertical-align: sub; margin-right: 15px; display: inline-block; margin-top: 5px"
-            >
-            <span
-              style="font-size:11px; line-height: 1.2; color:#aaaaaa; letter-spacing: 0.4px; font-family: Trebuchet, Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:5px; display: inline-block; vertical-align: bottom"
-            >{{phoneNumberFormatted}}</span>
+            <div v-if="isPhoneNumberValid">
+              <img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAQAAAD8x0bcAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADdcAAA3XAUIom3gAAAAHdElNRQfjBhUJBDNg7g4cAAABMUlEQVQoz3XQuy+dARzG8c/7up4OJoO4xGJplIQTBgMhIXIag5yGpLGIiI3VX2AVllYiJlPTNyaJdpAwGE4oItJVFDGdhsH9NrjE5fWbnuGb/L7PE0S0S7uWNS5L2tsLdWo2ZsSmAXlEsVC3Kbuu/HShVeyFju3f3uffku9BBfKD+1zh5D3oRimo1hYrhNC6JpC0ao/bWOiXasVYVyNBEAsdWtONLTv6iBshiEgYNS+j0LAdP14jaSFOzUorc+abKj2voUhOL2Rd6rHhyIZ2H/11pVy/Nh/sugmeHLrUm/Rfga8qbWmw6J8OeWaCZ6pdGn23j0/q/LENvqgNHv+CFimRzAulXBPhYwOwZNpng4ofqkOp3OB5C5CQkrRtxYELZYYsvxj4acYSHerkOFdkzsIdFQdOIlSssuMAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTktMDYtMjFUMDk6MDQ6NTErMDA6MDBTc7gIAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE5LTA2LTIxVDA5OjA0OjUxKzAwOjAwIi4AtAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII="
+                alt="tel"
+                style="vertical-align: sub; margin-right: 15px; display: inline-block; margin-top: 5px"
+              >
+              <span
+                style="font-size:11px; line-height: 1.2; color:#aaaaaa; letter-spacing: 0.4px; font-family: Trebuchet, Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:5px; display: inline-block; vertical-align: bottom"
+              >{{phoneNumberFormatted}}</span>
+            </div>
             <p style="margin-top: 8px; margin-left: -3px; line-height: 1.2;">
               <a
                 v-if="locale.hasOwnProperty('facebookLink')"
@@ -193,8 +195,7 @@ export default {
         this.lastName.trim().length > 0 &&
         this.job.trim().length > 0 &&
         this.officeAddr.trim().length > 0 &&
-        this.prefixeMail.trim().length > 0 &&
-        this.isPhoneNumberValid
+        this.prefixeMail.trim().length > 0
       );
     },
     phoneNumberFormatted: function() {
