@@ -38,16 +38,16 @@
         </label>
         <span class="email">@wearephenix.com</span>
         <label>
-          {{locale.text.phoneNumber}} : {{locale.phonePrefix}}
+          {{locale.text.phoneNumber}}
           <input
             type="text"
-            v-model="numeroTelephone"
+            v-model="phoneNumber"
             required
-            pattern="\d{9}"
-            maxlength="9"
-            @keydown="checkIfNumber"
+            pattern="\+?[0-9]+"
+            v-on:blur="checkPhoneNumber"
           >
         </label>
+        <span class="inputError" v-if="invalidPhoneNumberMsg">{{invalidPhoneNumberMsg}}</span>
         <p
           style="font-size:12px"
         >* {{locale.text.footNote1}}</p>
@@ -106,7 +106,7 @@
             >
             <span
               style="font-size:11px; line-height: 1.2; color:#aaaaaa; letter-spacing: 0.4px; font-family: Trebuchet, Arial, Helvetica, sans-serif; margin-top: 2px; margin-bottom:5px; display: inline-block; vertical-align: bottom"
-            >{{locale.phonePrefix}}{{numeroTelephoneFormatted}}</span>
+            >{{phoneNumberFormatted}}</span>
             <p style="margin-top: 8px; margin-left: -3px; line-height: 1.2;">
               <a
                 v-if="locale.hasOwnProperty('facebookLink')"
@@ -165,7 +165,8 @@
 </template>
 
 <script>
-import {locales} from './locales.js'
+import {locales} from './locales.js';
+import {isValidPhoneNumber, parsePhoneNumber} from 'libphonenumber-js';
 export default {
   name: "app",
   data() {
@@ -177,18 +178,14 @@ export default {
       officeAddr: "",
       additionnalAddr: "",
       prefixeMail: "",
-      numeroTelephone: "",
-      locale: locales['fr_fr']
+      phoneNumber: "",
+      locale: locales['fr_fr'],
+      invalidPhoneNumberMsg: '',
     };
   },
   computed: {
-    isNumeroTelValide: function() {
-      // On ne veut que les inputs à 9 caractères et entièrement constitués de nombres
-      // const isRightLength = this.numeroTelephone.length == 9;
-      // const isOnlyNumbers = /^\d+$/.test(this.numeroTelephone);
-      return (
-        this.numeroTelephone.length == 9 && /^\d+$/.test(this.numeroTelephone)
-      );
+    isPhoneNumberValid: function() {
+      return isValidPhoneNumber(this.phoneNumber, this.locale.countryCode);
     },
     canCopy: function() {
       return (
@@ -197,22 +194,15 @@ export default {
         this.job.trim().length > 0 &&
         this.officeAddr.trim().length > 0 &&
         this.prefixeMail.trim().length > 0 &&
-        this.isNumeroTelValide
+        this.isPhoneNumberValid
       );
     },
-    numeroTelephoneFormatted: function() {
-      // Possibilité de valider/formatter le numéro de téléphone en live si besoin
-      if (this.numeroTelephone.length > 1) {
-        let result = this.numeroTelephone[0];
-        for (let i = 1; i < this.numeroTelephone.length; i += 2) {
-          result += " " + this.numeroTelephone[i];
-          if (this.numeroTelephone[i + 1] != undefined) {
-            result += this.numeroTelephone[i + 1];
-          }
-        }
-        return result;
+    phoneNumberFormatted: function() {
+      if (this.isPhoneNumberValid) {
+        const parsedNumber = parsePhoneNumber(this.phoneNumber, this.locale.countryCode);
+        return parsedNumber.formatInternational();
       } else {
-        return this.numeroTelephone;
+        return null;
       }
     },
     nameFormatted: function() {
@@ -226,12 +216,13 @@ export default {
     updateLocale: function(code) {
       this.locale = locales[code]
     },
-    checkIfNumber: function(e) {
-      // console.log(e);
-      // console.log(e.key);
-      // si la key ne fait qu'un caractère et que ce n'est pas un chiffre, ça ne passe pas
-      if (e.key.length == 1 && !/\d/.test(e.key))
-        e.preventDefault() && e.stopPropagation();
+    checkPhoneNumber: function() {
+      console.log("Salut")
+      if (this.isPhoneNumberValid) {
+        this.invalidPhoneNumberMsg = '';
+      } else {
+        this.invalidPhoneNumberMsg = 'Phone number does not have a valid format';
+      }
     },
     remplirMail: function() {
       if (!this.prefixeMail && this.firstName)
@@ -328,6 +319,14 @@ input {
   flex: 1;
   height: 100%;
   padding: 0 0.7em;
+}
+
+.inputError {
+  font-size: 1.5em;
+  color: red;
+  position: relative;
+  left: calc(100% - 20ch);
+  top: -8px;
 }
 
 .email {
