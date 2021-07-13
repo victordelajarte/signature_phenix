@@ -218,7 +218,6 @@ export default {
       this.locale = locales[code]
     },
     checkPhoneNumber: function() {
-      console.log("Salut")
       if (this.isPhoneNumberValid) {
         this.invalidPhoneNumberMsg = '';
       } else {
