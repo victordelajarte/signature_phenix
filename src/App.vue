@@ -170,7 +170,7 @@
 
 <script>
 import {locales} from './locales.js';
-import {isValidPhoneNumber, parsePhoneNumber} from 'libphonenumber-js';
+import {isValidPhoneNumber, parsePhoneNumber} from 'libphonenumber-js/max';
 export default {
   name: "app",
   data() {
@@ -197,7 +197,8 @@ export default {
         this.lastName.trim().length > 0 &&
         this.job.trim().length > 0 &&
         this.officeAddr.trim().length > 0 &&
-        this.prefixeMail.trim().length > 0
+        this.prefixeMail.trim().length > 0 &&
+        (this.isPhoneNumberValid || this.phoneNumber === "")
       );
     },
     phoneNumberFormatted: function() {
