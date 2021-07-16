@@ -9,6 +9,8 @@
           <button class="countryButton" v-on:click="updateLocale('fr_fr')"><span class="emoji">🇫🇷</span></button>
           <button class="countryButton" v-on:click="updateLocale('es_es')"><span class="emoji">🇪🇸</span></button>
           <button class="countryButton" v-on:click="updateLocale('pt_pt')"><span class="emoji">🇵🇹</span></button>
+          <button class="countryButton" v-on:click="updateLocale('it_it')"><span class="emoji">🇮🇹</span></button>
+          <button class="countryButton" v-on:click="updateLocale('fr_be')"><span class="emoji">🇧🇪</span></button>
           <button class="countryButton" v-on:click="updateLocale('en_gb')"><span class="emoji">🇬🇧</span></button>
         </div>
 
